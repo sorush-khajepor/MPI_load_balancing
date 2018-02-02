@@ -1,3 +1,26 @@
+/*  MPI load balancer for (non-)contiguous load vector (items have same weight).
+    Copyright (C) <2015>  Sorush Khajepor  
+    sorush.khajepor@gmail.com
+    s.khajepor@hw.ac.uk
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+    Sequence of running the code:
+    - mpicxx loadBalancer.cpp
+    - mpirun -n 5 ./a.out
+    Change 5 to your desired number of processors.   
+    */
+
+
 #include "mpi.h"
 #include <iostream>
 #include <vector>
