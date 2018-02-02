@@ -4,6 +4,7 @@
 
 using namespace std;
 
+// Use this function to divide a non-contiguous load into chunk vectors
 // N = Number of items to be distributed
 // chunk = a part of the load vector for the processor running this code.
 // It contains index of items only. It is assumed the index
@@ -35,7 +36,7 @@ int loadBalancer (int N, vector<int>& chunk){
 
 }
 
-// Use this to divide a contiguous load vector to contiguous chunks
+// Use this function to divide a contiguous load vector to contiguous chunks
 // N = Number of items to be distributed
 // begin = start index of the chunk
 // end = end index of the chunk, like vectors end = index-of-the-lastt + 1
@@ -96,6 +97,7 @@ if (rank==0){
 cout << "Number of items = " << N << endl;
 cout << "load index starts from 0 to "<< N-1<<endl;
 }
+// Report of the first function call
 cout << "rank = "<<rank<< "  index begins at = "<< chunk.front()
      << "  finishes at = " << chunk.back()
      << "  with chunk size = " << chunk.size()<< endl;
