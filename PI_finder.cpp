@@ -17,7 +17,6 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-
 #include "loadBalancer.h"
 #include <math.h>
 
@@ -28,7 +27,7 @@ int main (){
 
 	// MPI initialization 
 	int rank;
-	MPI_Init(NULL,NULL);
+	MPI_Init(NULL, NULL);
 	MPI_Comm_rank(MPI_COMM_WORLD, &rank);
 
 	// Begining and end (last+1) index of the chunk for the current processor. 
@@ -36,19 +35,17 @@ int main (){
 	int end;
 
 	// Calling load balancer to find chunk's limits 
-	loadBalancer(N,begin,end);
+	loadBalancer(N, begin, end);
 	
 	// Calculating a chunk of PI on each processor 
 	double PI_chunk = 0.0;
-	for (int i=begin;i<end;i++){
+	for (int i = begin; i < end; i++){
 
-	PI_chunk += (4.0/N) * 1.0 / (1.0+ pow((i+0.5)/N,2.0));
-
+		PI_chunk += (4.0/N) * 1.0 / (1.0 + pow( (i+0.5) / N ,2.0) );
 	}
 
-	cout<< "rank = "<< rank<<"  my share is = "<< PI_chunk <<endl;
+	cout<< "My rank is "<< rank <<"  and my share is "<< PI_chunk << endl;
 
 	MPI_Finalize();
-
 }
 
