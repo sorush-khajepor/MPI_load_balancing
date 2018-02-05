@@ -72,7 +72,8 @@ int loadBalancer (int N, vector<int>& chunk){
 // Use this function to divide a contiguous load vector to contiguous chunks
 // N = Number of items to be distributed
 // begin = start index of the chunk
-// end = end index of the chunk, like vectors, end = index-of-the-last + 1
+// end = past-the-end index of the chunk, like vectors, 
+// end = index-of-the-last + 1
 // Index of the last element = end - 1 
 // Size of each chunk = end - begin
 // For example, Load = Load [0:11] has 12 elements and is supposed to 
