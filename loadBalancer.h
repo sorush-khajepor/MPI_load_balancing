@@ -31,6 +31,17 @@ using namespace std;
 // chunk = a part of the load vector for the processor running this code.
 // It contains index of items only. It is assumed the index
 // of items starts from 0.
+// For example, Load = Load [0:11] has 12 elements and is supposed to 
+// be divided among 5 processors. We have chunk_i = chunk of processor i:
+// chunk_0 = {0,   1, 2}
+// chunk_1 = {3,   4, 5}
+// chunk_2 = {6,   7}
+// chunk_3 = {8,   9}
+// chunk_4 = {10, 11}
+// Therefore, processor of rank 0 works on zeroth, first, and second elemets
+// of Load. The data type of Load is not of concernt here. We assumed
+// all elemets have the same computational weight. Chunk can be filled
+// in a non-contiguous way. 
 int loadBalancer (int N, vector<int>& chunk){
 
     // MPI parameters 
@@ -61,7 +72,20 @@ int loadBalancer (int N, vector<int>& chunk){
 // Use this function to divide a contiguous load vector to contiguous chunks
 // N = Number of items to be distributed
 // begin = start index of the chunk
-// end = end index of the chunk, like vectors end = index-of-the-lastt + 1
+// end = end index of the chunk, like vectors, end = index-of-the-last + 1
+// Index of the last element = end - 1 
+// Size of each chunk = end - begin
+// For example, Load = Load [0:11] has 12 elements and is supposed to 
+// be divided among 5 processors. Each processor finds the below values
+// Processor    begin       end
+//   0 =         0          3
+//   1 =         3          6
+//   2 =         6          8
+//   3 =         8          10
+//   4 =         10         12
+// Therefore, processor of rank 0 works on zeroth, first, and second elemets
+// of Load. The data type of Load is not of concernt here. We assumed
+// all elemets have the same computational weight. 
 int loadBalancer (int N,int &begin,int &end){
 
     // MPI parameters 
